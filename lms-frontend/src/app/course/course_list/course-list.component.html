@@ -1,0 +1,9 @@
+<div class="course-container">
+  <h2>Courses</h2>
+
+  <div class="course" *ngFor="let course of courses">
+    <h3>{{ course.title }}</h3>
+    <p>{{ course.description }}</p>
+    <strong>₹ {{ course.price }}</strong>
+  </div>
+</div>

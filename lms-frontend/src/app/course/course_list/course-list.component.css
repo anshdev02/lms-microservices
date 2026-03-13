@@ -1,0 +1,10 @@
+.course-container {
+  width: 600px;
+  margin: 20px auto;
+}
+
+.course {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+}
