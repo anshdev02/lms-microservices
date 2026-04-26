@@ -27,3 +27,4 @@ Authentication and authorization are realized with JWT, including access and ref
 - Angular Material
 - TailwindCSS
 - Docker
+

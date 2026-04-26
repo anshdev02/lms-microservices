@@ -5,7 +5,7 @@ services:
       MYSQL_ROOT_PASSWORD: Root123$
       MYSQL_DATABASE: lms_users
     ports:
-      - "3306:3306"
+      - "3307:3306"
     networks:
       - lms-network
     healthcheck:
