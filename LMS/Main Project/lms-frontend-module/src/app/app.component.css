@@ -1,0 +1,12 @@
+/* Global layout container */
+.app-container {
+  padding: 20px;
+  min-height: calc(100vh - 60px);
+  background-color: #f5f7fa;
+}
+
+/* Optional: basic body reset */
+:host {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+}

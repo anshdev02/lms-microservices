@@ -1,0 +1,8 @@
+com\lms\assessment_service\entity\Assessment.class
+com\lms\assessment_service\entity\AssessmentSubmission.class
+com\lms\assessment_service\repository\AssessmentRepository.class
+com\lms\assessment_service\service\AssessmentService.class
+com\lms\assessment_service\AssessmentServiceApplication.class
+com\lms\assessment_service\controller\AssessmentController.class
+com\lms\assessment_service\repository\AssessmentSubmissionRepository.class
+com\lms\assessment_service\exception\GlobalExceptionHandler.class

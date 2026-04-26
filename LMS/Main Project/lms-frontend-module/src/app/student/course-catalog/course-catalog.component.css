@@ -1,0 +1,41 @@
+.course-catalog {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.course-card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.course-card h3 {
+  margin-top: 0;
+  color: #1976d2;
+}
+
+.meta {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+button {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #125aa0;
+}

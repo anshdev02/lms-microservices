@@ -1,0 +1,47 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <i class="fas fa-graduation-cap"></i>
+      <span>EduPlatform</span>
+    </div>
+    <div class="nav-menu" *ngIf="authService.isAuthenticated()">
+      <div class="user-info">
+        <div class="user-avatar" (click)="toggleProfile()">
+          <i class="fas fa-user"></i>
+        </div>
+        <span class="username">{{ username }}</span>
+      </div>
+      <button class="btn btn-danger btn-sm" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div class="profile-modal" *ngIf="showProfile" (click)="toggleProfile()">
+    <div class="profile-content" (click)="$event.stopPropagation()">
+      <div class="profile-header">
+        <i class="fas fa-user-circle"></i>
+        <h3>User Profile</h3>
+        <button class="close-btn" (click)="toggleProfile()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="profile-info">
+        <div class="info-item">
+          <label>User ID:</label>
+          <span>{{ getStudentInfo().id }}</span>
+        </div>
+        <div class="info-item">
+          <label>Username:</label>
+          <span>{{ getStudentInfo().username }}</span>
+        </div>
+        <div class="info-item">
+          <label>Role:</label>
+          <span>{{ getStudentInfo().role }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

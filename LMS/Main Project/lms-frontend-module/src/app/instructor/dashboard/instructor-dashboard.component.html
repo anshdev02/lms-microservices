@@ -1,0 +1,124 @@
+<div class="instructor-dashboard">
+  <h2>Instructor Dashboard</h2>
+
+  <!-- Quick Actions Section -->
+  <div class="quick-actions-section">
+    <h3>Quick Actions</h3>
+    <div class="actions-grid">
+      <div class="action-card">
+        <div class="card-icon">
+          <i class="fas fa-clipboard-list"></i>
+        </div>
+        <h4>Assessments</h4>
+        <p>Create and manage assessments</p>
+        <a routerLink="/instructor/assessments" class="action-btn">
+          <i class="fas fa-arrow-right"></i>
+          Manage Assessments
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bulk Course Assignment Section -->
+  <div class="bulk-assign-section">
+    <h3>Assign Course to Multiple Students</h3>
+    <div class="bulk-form">
+      <div class="form-group">
+        <label>Select Course:</label>
+        <select [(ngModel)]="selectedCourseForBulk" name="courseForBulk">
+          <option value="">Select a course</option>
+          <option *ngFor="let course of allCourses" [value]="course.id">{{ course.title }}</option>
+        </select>
+      </div>
+      <button (click)="assignCourseToMultipleStudents()" class="bulk-assign-btn">Assign to Selected Students</button>
+    </div>
+    
+    <div class="students-selection">
+      <h4>Select Students:</h4>
+      <div class="select-all-option">
+        <input 
+          type="checkbox" 
+          id="selectAll" 
+          (change)="toggleSelectAll($event)">
+        <label for="selectAll"><strong>Select All Students</strong></label>
+      </div>
+      <div class="students-grid">
+        <div *ngFor="let student of students" class="student-checkbox">
+          <input 
+            type="checkbox" 
+            [id]="'student-' + student.id" 
+            name="studentCheckbox"
+            (change)="onStudentSelectionChange(student.id!, $event)">
+          <label [for]="'student-' + student.id">{{ student.username }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Enrolled Students Section -->
+  <div class="view-students-section">
+    <h3>View Enrolled Students</h3>
+    <div class="view-form">
+      <div class="form-group">
+        <label>Select Course:</label>
+        <select [(ngModel)]="selectedCourseForView" name="courseForView">
+          <option value="">Select a course</option>
+          <option *ngFor="let course of allCourses" [value]="course.id">{{ course.title }}</option>
+        </select>
+      </div>
+      <button (click)="viewEnrolledStudents()" class="view-btn">View Students</button>
+    </div>
+    
+    <div *ngIf="enrolledStudents.length > 0" class="students-list">
+      <h4>Enrolled Students</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Course</th>
+            <th>Enrollment ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let enrollment of enrolledStudents">
+            <td>{{ enrollment.studentName }}</td>
+            <td>{{ enrollment.courseName }}</td>
+            <td>{{ enrollment.id }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- View All Courses Section -->
+  <div class="view-courses-section">
+    <h3>All Available Courses (For Practice)</h3>
+    <div class="search-container">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="filterCourses()"
+        placeholder="Search courses by title..." 
+        class="search-input">
+    </div>
+    <div *ngIf="filteredCourses.length > 0" class="courses-grid">
+      <div *ngFor="let course of filteredCourses" class="course-card" (click)="viewCourseDetails(course.id!)">
+        <h4>{{ course.title }}</h4>
+        <p><strong>Description:</strong> {{ course.description }}</p>
+        <p><strong>Duration:</strong> {{ course.duration }}</p>
+        <p><strong>Instructor ID:</strong> {{ course.instructorId || 'Not Assigned' }}</p>
+        <div *ngIf="course.content" class="course-content">
+          <p><strong>Course Materials:</strong></p>
+          <div class="content-display">{{ course.content }}</div>
+        </div>
+        <div class="click-hint">Click to view details</div>
+      </div>
+    </div>
+    <div *ngIf="filteredCourses.length === 0 && allCourses.length > 0" class="no-results">
+      <p>No courses found matching "{{ searchTerm }}"</p>
+    </div>
+    <div *ngIf="allCourses.length === 0" class="no-courses">
+      <p>No courses available at the moment.</p>
+    </div>
+  </div>
+</div>
