@@ -11,7 +11,6 @@ import com.lms.course_service.service.CourseService;
 
 @RestController
 @RequestMapping("/courses")
-@CrossOrigin(origins = "http://localhost:4200")
 public class CourseController {
 
     @Autowired

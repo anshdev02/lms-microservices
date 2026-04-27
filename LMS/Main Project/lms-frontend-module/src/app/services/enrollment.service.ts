@@ -6,7 +6,7 @@ import { Enrollment } from '../models/models';
 @Injectable({ providedIn: 'root' })
 export class EnrollmentService {
 
-  private baseUrl = 'http://localhost:8604/enroll';
+  private baseUrl = 'http://localhost:8600/enroll';
 
   constructor(private http: HttpClient) {}
 

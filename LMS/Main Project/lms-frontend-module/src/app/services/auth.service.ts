@@ -8,7 +8,7 @@ import { catchError, throwError } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:8601/auth';
+  private baseUrl = 'http://localhost:8600/auth';
 
   constructor(
     private http: HttpClient,

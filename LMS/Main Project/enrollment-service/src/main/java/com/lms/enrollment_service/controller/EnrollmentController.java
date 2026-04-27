@@ -10,7 +10,6 @@ import com.lms.enrollment_service.service.EnrollmentService;
 
 @RestController
 @RequestMapping("/enroll")
-@CrossOrigin(origins = "http://localhost:4200")
 public class EnrollmentController {
 
     @Autowired

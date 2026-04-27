@@ -2,17 +2,18 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: Root123$
+      MYSQL_ROOT_PASSWORD: Root@123
       MYSQL_DATABASE: lms_users
     ports:
       - "3307:3306"
     networks:
       - lms-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pRoot123$"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 10
+      start_period: 120s
     volumes:
       - mysql-data:/var/lib/mysql
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
@@ -24,10 +25,11 @@ services:
     networks:
       - lms-network
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:8761/actuator/health || exit 1"]
-      interval: 15s
-      timeout: 10s
-      retries: 5
+      test: ["CMD-SHELL", "curl -f http://localhost:8761/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
 
   api-gateway:
     build: ./api-gateway
@@ -54,9 +56,9 @@ services:
       - lms-network
     environment:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_users?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_users?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=Root123$
+      - SPRING_DATASOURCE_PASSWORD=Root@123
 
   user-service:
     build: ./user-service
@@ -71,9 +73,9 @@ services:
       - lms-network
     environment:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_users?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_users?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=Root123$
+      - SPRING_DATASOURCE_PASSWORD=Root@123
 
   course-service:
     build: ./course-service
@@ -88,9 +90,9 @@ services:
       - lms-network
     environment:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_courses?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_courses?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=Root123$
+      - SPRING_DATASOURCE_PASSWORD=Root@123
 
   enrollment-service:
     build: ./enrollment-service
@@ -105,9 +107,9 @@ services:
       - lms-network
     environment:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_enrollments?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_enrollments?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=Root123$
+      - SPRING_DATASOURCE_PASSWORD=Root@123
 
   assessment-service:
     build: ./assessment-service
@@ -122,9 +124,9 @@ services:
       - lms-network
     environment:
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_assessments?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/lms_assessments?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=Root123$
+      - SPRING_DATASOURCE_PASSWORD=Root@123
 
   frontend:
     build: ./lms-frontend-module

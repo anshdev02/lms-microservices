@@ -2,6 +2,17 @@
 
 A full-stack Learning Management System built with a microservices architecture using Spring Boot, Angular, and Docker.
 
+## Screenshots
+
+### Login
+![Login](images/login.png)
+
+### Dashboard
+![Dashboard](images/dashboard.png)
+
+### User Management
+![Users](images/users.png)
+
 ## Tech Stack
 
 - **Backend:** Java 17, Spring Boot 3.4, Spring Cloud (Eureka, Gateway)
@@ -171,3 +182,9 @@ Main Project/
 | ADMIN | Full access — manage users, courses, enrollments |
 | INSTRUCTOR | Create and manage own courses and assessments |
 | STUDENT | Enroll in courses, view content, submit assessments |
+
+
+Font icon pack 
+just run it "cd "d:\Downloads\LMS\LMS\Main Project\lms-frontend-module"
+            npm install @fortawesome/fontawesome-free"
+

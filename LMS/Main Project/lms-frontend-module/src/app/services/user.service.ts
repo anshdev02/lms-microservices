@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private baseUrl = 'http://localhost:8602/users';
+  private baseUrl = 'http://localhost:8600/users';
 
   constructor(
     private http: HttpClient,

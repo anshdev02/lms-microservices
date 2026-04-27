@@ -20,7 +20,7 @@ export interface AssessmentSubmission {
 @Injectable({ providedIn: 'root' })
 export class AssessmentService {
 
-  private baseUrl = 'http://localhost:8605/assessments';
+  private baseUrl = 'http://localhost:8600/assessments';
 
   constructor(private http: HttpClient) {}
 

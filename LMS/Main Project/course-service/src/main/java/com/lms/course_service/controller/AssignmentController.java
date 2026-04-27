@@ -8,7 +8,6 @@ import com.lms.course_service.service.AssignmentService;
 
 @RestController
 @RequestMapping("/assignments")
-@CrossOrigin(origins = "http://localhost:4200")
 public class AssignmentController {
 
     @Autowired

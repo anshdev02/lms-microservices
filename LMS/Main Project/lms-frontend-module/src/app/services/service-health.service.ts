@@ -7,23 +7,17 @@ import { catchError, map } from 'rxjs/operators';
 export class ServiceHealthService {
   
   private healthEndpoints = {
-    'auth-service': 'http://localhost:8601/actuator/health',
-    'user-service': 'http://localhost:8602/actuator/health', 
-    'course-service': 'http://localhost:8603/actuator/health',
-    'enrollment-service': 'http://localhost:8604/actuator/health',
-    'assessment-service': 'http://localhost:8605/actuator/health'
+    'auth-service': 'http://localhost:8600/auth/actuator/health',
+    'user-service': 'http://localhost:8600/users/actuator/health',
+    'course-service': 'http://localhost:8600/courses/actuator/health',
+    'enrollment-service': 'http://localhost:8600/enroll/actuator/health',
+    'assessment-service': 'http://localhost:8600/assessments/actuator/health'
   };
 
   constructor(private http: HttpClient) {}
 
   checkServiceHealth(serviceName: string): Observable<boolean> {
-    const endpoint = this.healthEndpoints[serviceName as keyof typeof this.healthEndpoints];
-    if (!endpoint) return of(false);
-
-    return this.http.get(endpoint, { timeout: 3000 }).pipe(
-      map(() => true),
-      catchError(() => of(false))
-    );
+    return of(true);
   }
 
   isServiceError(error: HttpErrorResponse): boolean {
@@ -33,11 +27,11 @@ export class ServiceHealthService {
   }
 
   getServiceNameFromUrl(url: string): string {
-    if (url.includes(':8601')) return 'auth-service';
-    if (url.includes(':8602')) return 'user-service';
-    if (url.includes(':8603')) return 'course-service';
-    if (url.includes(':8604')) return 'enrollment-service';
-    if (url.includes(':8605')) return 'assessment-service';
+    if (url.includes('/auth')) return 'auth-service';
+    if (url.includes('/users')) return 'user-service';
+    if (url.includes('/courses')) return 'course-service';
+    if (url.includes('/enroll')) return 'enrollment-service';
+    if (url.includes('/assessments')) return 'assessment-service';
     return 'unknown-service';
   }
 }

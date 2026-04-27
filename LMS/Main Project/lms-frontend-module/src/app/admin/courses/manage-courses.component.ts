@@ -207,28 +207,14 @@ export class ManageCoursesComponent implements OnInit {
   loadCourses() {
     this.courseService.getAllCourses().subscribe({
       next: (courses) => this.courses = courses,
-      error: (error) => {
-        console.error('Error loading courses:', error);
-        if (error.message && error.message.includes('not working')) {
-          alert(error.message);
-        } else {
-          alert('Error loading courses. Please try again.');
-        }
-      }
+      error: (error) => console.error('Error loading courses:', error)
     });
   }
 
   loadInstructors() {
     this.userService.getAllUsers().subscribe({
       next: (users) => this.instructors = users.filter(user => user.role === 'INSTRUCTOR'),
-      error: (error) => {
-        console.error('Error loading instructors:', error);
-        if (error.message && error.message.includes('not working')) {
-          alert(error.message);
-        } else {
-          alert('Error loading instructors. Please try again.');
-        }
-      }
+      error: (error) => console.error('Error loading instructors:', error)
     });
   }
 
@@ -247,14 +233,7 @@ export class ManageCoursesComponent implements OnInit {
           this.resetForm();
           alert('Course updated successfully!');
         },
-        error: (error) => {
-          console.error('Error updating course:', error);
-          if (error.message && error.message.includes('not working')) {
-            alert(error.message);
-          } else {
-            alert('Error updating course. Please try again.');
-          }
-        }
+        error: (error) => console.error('Error updating course:', error)
       });
     } else {
       // Validate required fields
@@ -278,14 +257,7 @@ export class ManageCoursesComponent implements OnInit {
           this.resetForm();
           alert('Course added successfully!');
         },
-        error: (error) => {
-          console.error('Error creating course:', error);
-          if (error.message && error.message.includes('not working')) {
-            alert(error.message);
-          } else {
-            alert('Error creating course. Please check all fields.');
-          }
-        }
+        error: (error) => console.error('Error creating course:', error)
       });
     }
   }
@@ -303,14 +275,7 @@ export class ManageCoursesComponent implements OnInit {
           this.loadCourses();
           alert('Course deleted successfully!');
         },
-        error: (error) => {
-          console.error('Error deleting course:', error);
-          if (error.message && error.message.includes('not working')) {
-            alert(error.message);
-          } else {
-            alert('Error deleting course.');
-          }
-        }
+        error: (error) => console.error('Error deleting course:', error)
       });
     }
   }

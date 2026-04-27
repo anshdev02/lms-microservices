@@ -32,6 +32,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@fortawesome/fontawesome-free",
+                "output": "assets/fontawesome"
               }
             ],
             "styles": [

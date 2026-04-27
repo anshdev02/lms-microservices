@@ -1,5 +1,5 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY target/*.jar app.jar
 EXPOSE 8604
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-XX:TieredStopAtLevel=1", "-Xms64m", "-Xmx256m", "-jar", "app.jar"]
